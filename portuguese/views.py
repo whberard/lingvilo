@@ -1,24 +1,30 @@
 from django.shortcuts import render
+from portuguese.models import Verb
 
 # Create your views here.
 def conjugate_pt(request):
+    context = {}
     irreg = ["crer", "dar", "saber"]
+    context['irreg'] = irreg
+    dbverbs = Verb.objects.all()
+    context['dbverbs'] = dbverbs
+
     if 'verb' in request.GET and request.GET['verb']:
         verb = request.GET['verb']
-        ending = verb[-2:]
-        root = verb[:-2]
+        context['verb'] = verb
         conj = get_conjugation_pt(verb)
         if conj:
-            present = conj["present"]
-            preterit = conj["preterit"]
+            context['present'] = conj["present"]
+            context['preterit'] = conj["preterit"]
 
-            return render(request, 'conjugate.html', {'verb': verb, 'ending': ending, 'root': root, 'present': present, 'preterit': preterit, 'irreg': irreg})
+            return render(request, 'conjugate.html', context)
         else: 
             errormsg = "I only know how to conjugate regular verbs that end in -ar, -er, or -ir."
-            return render(request, 'conjugate.html', {'verb': verb, 'error': errormsg, 'irreg': irreg})
+            context['errormsg'] = errormsg
+            return render(request, 'conjugate.html', context)
 
     else: 
-        return render(request, 'conjugate.html', {'irreg': irreg})
+        return render(request, 'conjugate.html', context)
 
 
 
