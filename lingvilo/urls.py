@@ -14,7 +14,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from lingvilo.views import conjugate_pt
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^portuguese/conjugate/$', conjugate_pt),
 ]
