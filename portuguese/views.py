@@ -4,13 +4,11 @@ from django.shortcuts import render
 def conjugate_pt(request):
     irreg = ["crer", "dar", "saber"]
     if 'verb' in request.GET and request.GET['verb']:
-        cando = False
         verb = request.GET['verb']
         ending = verb[-2:]
         root = verb[:-2]
         conj = get_conjugation_pt(verb)
         if conj:
-            cando = True
             present = conj["present"]
             preterit = conj["preterit"]
 
