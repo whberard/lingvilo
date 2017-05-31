@@ -5,15 +5,20 @@
 	<link rel="stylesheet" type="text/css" href="{% static "bootstrap-3.3.7-dist/css/bootstrap.min.css" %}">
 </head>
 <body>
-<div class="container">
-	<h1>Conjugate a verb!</h1>
+<div class="container" style="padding-top: 20px;">
 	<div class="row">
-	<div class="col-md-6" align="center">
-	<form action="" method="get">
+    <div class="col-md-6" >
+	<h1>Conjugate a verb!</h1>
+	<form action="" method="get" align="center">
 		<input type="text" name="verb" {% if verb %}placeholder="{{ verb }}"{% endif %} autofocus>
 		<input type="submit" value="Conjugate!">
 	</form>
 	</div>
+    <div class="col-md-6">
+        {% for v in irreg %}
+        <button type="button" class="btn btn-sm">{{ v }}</button>
+        {% endfor %}
+    </div>
 	</div>
 	{% if error %}
 		<div class="row">
