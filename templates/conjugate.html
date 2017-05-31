@@ -1,36 +1,53 @@
+{% load staticfiles %}
 <html>
 <head>
 	<title>Conjugate</title>
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap-3.3.7-dist/css/bootstrap.min.css" %}">
 </head>
 <body>
+<div class="container">
+	<h1>Conjugate a verb!</h1>
+	<div class="row">
+	<div class="col-md-6" align="center">
 	<form action="" method="get">
-		<input type="text" name="verb">
+		<input type="text" name="verb" {% if verb %}placeholder="{{ verb }}"{% endif %} autofocus>
 		<input type="submit" value="Conjugate!">
 	</form>
+	</div>
+	</div>
 	{% if error %}
+		<div class="row">
 		<p>I don't know how to conjugate {{ verb }}. {{ error }}</p>
+		</div>
 	{% else %}
 	{% if verb %}
+	<div class="row">
 		<p>Conjugating the verb {{ verb }}.</p>
 		<p>This is a {{ ending }}-verb with root {{ root }}.</p>
+	</div>
 		{% if present %}
+		<div class="row">
 		<h3>Present Tense:</h3>
 		<p>Eu {{present.eu}}</p>
 		<p>Tu {{present.tu}}</p>
 		<p>Ela {{present.ela}}</p>
 		<p>Nós {{present.nós}}</p>
 		<p>Elas {{present.elas}}</p>
+		</div>
 		{% endif %}
 
 		{% if imperfect %}
+		<div class="row">
 		<h3>Definite Past Tense (preterit):</h3>
 		<p>Eu {{preterit.eu}}</p>
 		<p>Tu {{preterit.tu}}</p>
 		<p>Ela {{preterit.ela}}</p>
 		<p>Nós {{preterit.nós}}</p>
 		<p>Elas {{preterit.elas}}</p>
+		</div>
 		{% endif %}
 	{% endif %}
 	{% endif %}
+</div>
 </body>
 </html>
