@@ -27,12 +27,16 @@
 	</div>
 		{% if present %}
 		<div class="row">
+		<div class="col-md-3">
 		<h3>Present Tense:</h3>
-		<p>Eu {{present.eu}}</p>
-		<p>Tu {{present.tu}}</p>
-		<p>Ela {{present.ela}}</p>
-		<p>Nós {{present.nós}}</p>
-		<p>Elas {{present.elas}}</p>
+		<table class="table" align="center">
+			<tr><td align="right">Eu</td> <td>{{present.eu}}</td></tr>
+			<tr><td align="right">Tu</td><td> {{present.tu}}</td>
+			<tr><td align="right">Ela</td><td> {{present.ela}}</td>
+			<tr><td align="right">Nós</td><td> {{present.nós}}</td>
+			<tr><td align="right">Elas</td><td> {{present.elas}}</td>
+		</table>
+		</div>
 		</div>
 		{% endif %}
 
