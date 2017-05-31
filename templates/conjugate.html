@@ -15,9 +15,11 @@
 	</form>
 	</div>
     <div class="col-md-6">
+        <p>Or pick an irregular verb: 
         {% for v in irreg %}
-        <button type="button" class="btn btn-sm">{{ v }}</button>
+        <a href="./?verb={{ v }}" class="btn btn-primary btn-sm">{{ v }}</a>
         {% endfor %}
+        </p>
     </div>
 	</div>
 	{% if error %}
