@@ -7,5 +7,12 @@
 		<input type="text" name="verb">
 		<input type="submit" value="Conjugate!">
 	</form>
+	{% if verb %}
+		<p>Conjugating the verb {{ verb }}.</p>
+		<p>This is a {{ ending }}-verb with root {{ root }}.</p>
+		{% for key, value in present.items %}
+		<p>{{ key }} {{ value }}</p>	
+		{% endfor %}
+	{% endif %}
 </body>
 </html>
