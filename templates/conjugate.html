@@ -7,12 +7,18 @@
 		<input type="text" name="verb">
 		<input type="submit" value="Conjugate!">
 	</form>
+	{% if error %}
+		<p>I don't know how to conjugate {{ verb }}. {{ error }}</p>
+	{% else %}
 	{% if verb %}
 		<p>Conjugating the verb {{ verb }}.</p>
 		<p>This is a {{ ending }}-verb with root {{ root }}.</p>
-		{% for key, value in present.items %}
-		<p>{{ key }} {{ value }}</p>	
-		{% endfor %}
+		<p>Eu {{present.eu}}</p>
+		<p>Tu {{present.tu}}</p>
+		<p>Ela {{present.ela}}</p>
+		<p>Nós {{present.nós}}</p>
+		<p>Elas {{present.elas}}</p>
+	{% endif %}
 	{% endif %}
 </body>
 </html>
