@@ -6,4 +6,5 @@ etc
 lingvilo/wsgi.py
 *.pyc
 *.swp
-
+static
+*/static
