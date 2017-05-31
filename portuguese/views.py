@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def conjugate_pt(request):
-    irreg = ["crer", "dar"]
+    irreg = ["crer", "dar", "saber"]
     if 'verb' in request.GET and request.GET['verb']:
         cando = False
         verb = request.GET['verb']
@@ -57,6 +57,22 @@ def get_conjugation_pt(verb):
                 'elas': 'deram'
                 }
         conj['preterit'] = preterit
+    elif verb == "saber":
+        present = {'eu': 'sei',
+                'tu': 'sabes',
+                'ela': 'sabe',
+                'nós': 'sabemos',
+                'elas': 'sabem'
+                }
+        conj['present'] = present
+        preterit = {'eu': 'soube',
+                'tu': 'soubeste',
+                'ela': 'soube',
+                'nós': 'soubemos',
+                'elas': 'souberam'
+                }
+        conj['preterit'] = preterit
+
 
     else:
         ending = verb[-2:]
