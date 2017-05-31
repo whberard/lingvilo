@@ -20,6 +20,11 @@
         <a href="./?verb={{ v }}" class="btn btn-primary btn-sm">{{ v }}</a>
         {% endfor %}
         </p>
+        <p>Or pick one of these: 
+        {% for v in dbverbs %}
+        <a href="./?verb={{ v}}">{{ v }}</a>
+        {% endfor %}
+        </p>
     </div>
 	</div>
 	{% if error %}
@@ -29,8 +34,9 @@
 	{% else %}
 	{% if verb %}
 	<div class="row">
-		<p>Conjugating the verb {{ verb }}.</p>
-		<p>This is a {{ ending }}-verb with root {{ root }}.</p>
+        {% if conj_note %}
+        <p>{{ conj_note }}</p>
+        {% endif %}
 	</div>
 		{% if present %}
         <div class="row"><!-- Conjugation Row -->
