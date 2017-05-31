@@ -1,0 +1,8 @@
+db.sqlite3
+etc
+lingvilo/__init__.py
+lingvilo/__pycache__
+lingvilo/wsgi.py
+*.pyc
+*.swp
+
