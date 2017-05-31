@@ -16,6 +16,13 @@ def conjugate_pt(request):
                     'elas': root + 'am',
                     }
 
+            preterit = {'eu': root + 'ei',
+                    'tu': root + 'aste',
+                    'ela': root + 'ou',
+                    'nós': root + 'ámos',
+                    'elas': root + 'aram',
+                    }
+
         elif ending == "er":
             cando = True
             present = {'eu': root + 'o',
@@ -23,6 +30,12 @@ def conjugate_pt(request):
                     'ela': root + 'e',
                     'nós': root + 'emos',
                     'elas': root + 'em'
+                    }
+            preterit = {'eu': root + 'i',
+                    'tu': root + 'este',
+                    'ela': root + 'eu',
+                    'nós': root + 'emos',
+                    'elas': root + 'eram',
                     }
 
         elif ending == "ir":
@@ -32,6 +45,12 @@ def conjugate_pt(request):
                     'ela': root + 'e',
                     'nós': root + 'imos',
                     'elas': root+ 'em'
+                    }
+            preterit = {'eu': root + 'i',
+                    'tu': root + 'iste',
+                    'ela': root + 'iu',
+                    'nós': root + 'imos',
+                    'elas': root + 'iram',
                     }
 
         if cando:

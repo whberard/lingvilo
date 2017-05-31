@@ -13,11 +13,23 @@
 	{% if verb %}
 		<p>Conjugating the verb {{ verb }}.</p>
 		<p>This is a {{ ending }}-verb with root {{ root }}.</p>
+		{% if present %}
+		<h3>Present Tense:</h3>
 		<p>Eu {{present.eu}}</p>
 		<p>Tu {{present.tu}}</p>
 		<p>Ela {{present.ela}}</p>
 		<p>Nós {{present.nós}}</p>
 		<p>Elas {{present.elas}}</p>
+		{% endif %}
+
+		{% if imperfect %}
+		<h3>Definite Past Tense (preterit):</h3>
+		<p>Eu {{preterit.eu}}</p>
+		<p>Tu {{preterit.tu}}</p>
+		<p>Ela {{preterit.ela}}</p>
+		<p>Nós {{preterit.nós}}</p>
+		<p>Elas {{preterit.elas}}</p>
+		{% endif %}
 	{% endif %}
 	{% endif %}
 </body>
