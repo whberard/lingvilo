@@ -2,6 +2,7 @@ db.sqlite3
 etc
 */__init__.py
 */__pycache__
+*/migrations
 lingvilo/wsgi.py
 *.pyc
 *.swp
