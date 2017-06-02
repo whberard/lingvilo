@@ -4,7 +4,7 @@ from portuguese.models import Verb
 # Create your views here.
 def conjugate_pt(request):
     context = {}
-    irreg = ["crer", "dar", "saber"]
+    irreg = ["crer", "dar", "ir", "saber", "vir"]
     context['irreg'] = irreg
     dbverbs = Verb.objects.all()
     context['dbverbs'] = dbverbs
@@ -62,6 +62,15 @@ def get_conjugation_pt(verb):
                 'elas': 'deram'
                 }
         conj['preterit'] = preterit
+    elif verb == "ir":
+        conj['present'] = {'eu': 'vou',
+                'tu': 'vais',
+                'ela': 'vai',
+                'nós': 'vamos',
+                }
+        conj['preterit'] = {}
+        conj['imperative'] = {'ela': 'vai'}
+
     elif verb == "saber":
         present = {'eu': 'sei',
                 'tu': 'sabes',
@@ -77,6 +86,16 @@ def get_conjugation_pt(verb):
                 'elas': 'souberam'
                 }
         conj['preterit'] = preterit
+    elif verb == "vir":
+        present = {'eu': 'venho',
+                'tu': 'vens',
+                'ela': 'vem',
+                'nós': 'vimos',
+                'elas': 'vêm'
+                }
+        conj['present'] = present
+        conj['preterit'] = {}
+        conj['imperative'] = {'ela': 'vem'}
 
     elif verb[-3:] == "car":
         root = verb[:-3]
