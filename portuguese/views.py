@@ -86,6 +86,16 @@ def get_conjugation_pt(verb):
                 'elas': 'souberam'
                 }
         conj['preterit'] = preterit
+    elif verb == "ter":
+        conj['present'] = {'eu': 'tenho',
+                'tu': 'tens',
+                'ela': 'tem',
+                'nós': 'temos',
+                'elas': 'têm'
+                }
+        conj['preterit'] = {}
+        conj['imperative'] = {}
+
     elif verb == "vir":
         present = {'eu': 'venho',
                 'tu': 'vens',
