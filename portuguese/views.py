@@ -47,6 +47,7 @@ def get_conjugation_pt(verb):
                 'elas': 'creram'
                 }
         conj['preterit'] = preterit
+        conj['imperative'] = {}
     elif verb == "dar":
         present = {'eu': 'dou',
                 'tu': 'dás',
@@ -62,6 +63,7 @@ def get_conjugation_pt(verb):
                 'elas': 'deram'
                 }
         conj['preterit'] = preterit
+        conj['imperative'] = {}
     elif verb == "ir":
         conj['present'] = {'eu': 'vou',
                 'tu': 'vais',
@@ -124,23 +126,22 @@ def get_conjugation_pt(verb):
 
 
 def regular_present_pt(verb):
-    ending = verb[-2:]
     root = verb[:-2]
-    if ending == "ar":
+    if verb.endswith("ar"):
         present = {'eu': root + 'o',
                 'tu': root + 'as',
                 'ela': root + 'a',
                 'nós': root + 'amos',
                 'elas': root + 'am',
                 }
-    elif ending == "er":
+    elif verb.endswith("er"):
         present = {'eu': root + 'o',
                 'tu': root + 'es',
                 'ela': root + 'e',
                 'nós': root + 'emos',
                 'elas': root + 'em'
                 }
-    elif ending == "ir":
+    elif verb.endswith("ir"):
         present = {'eu': root + 'o',
                 'tu': root + 'es',
                 'ela': root + 'e',
@@ -152,23 +153,22 @@ def regular_present_pt(verb):
     return present
 
 def regular_preterit_pt(verb):
-    ending = verb[-2:]
     root = verb[:-2]
-    if ending == "ar":
+    if verb.endswith("ar"):
         preterit = {'eu': root + 'ei',
                 'tu': root + 'aste',
                 'ela': root + 'ou',
                 'nós': root + 'ámos',
                 'elas': root + 'aram',
                 }
-    elif ending == "er":
+    elif verb.endswith("er"):
         preterit = {'eu': root + 'i',
                 'tu': root + 'este',
                 'ela': root + 'eu',
                 'nós': root + 'emos',
                 'elas': root + 'eram',
                 }
-    elif ending == "ir":
+    elif verb.endswith("ir"):
         preterit = {'eu': root + 'i',
                 'tu': root + 'iste',
                 'ela': root + 'iu',
@@ -181,21 +181,20 @@ def regular_preterit_pt(verb):
 
 
 def regular_imperative_pt(verb):
-    ending = verb[-2:]
     root = verb[:-2]
-    if ending == "ar":
+    if verb.endswith("ar"):
         imperative = {'tu': root + 'a',
                 'ela': root + 'e',
                 'nós': root + 'emos',
                 'elas': root + 'em',
                 }
-    elif ending == "er":
+    elif verb.endswith("er"):
         imperative = {'tu': root + 'e',
                 'ela': root + 'a',
                 'nós': root + 'amos',
                 'elas': root + 'am',
                 }
-    elif ending == "ir":
+    elif verb.endswith("ir"):
         imperative = {'tu': root + 'e',
                 'ela': root + 'a',
                 'nós': root + 'amos',
