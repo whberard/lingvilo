@@ -205,7 +205,8 @@ def regular_imperative_pt(verb):
     return imperative
 
         
-
+def subjunctive_constructs(request):
+    return render(request, 'subjunctive.html', {})
 
 
 
