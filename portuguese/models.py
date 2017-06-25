@@ -10,3 +10,10 @@ class Verb(models.Model):
         return self.verb
 
 
+class Word(models.Model):
+    word = models.CharField(max_length=30)
+    translation = models.CharField(max_length=100, blank=True)
+    is_known = models.BooleanField()
+
+    def __str__(self):
+        return self.word
