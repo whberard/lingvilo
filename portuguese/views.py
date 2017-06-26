@@ -222,14 +222,25 @@ def my_vocabulary(request):
         if form.is_valid():
             cd = form.cleaned_data
             updated = "We updated id=", cd['word_id']
+            w = Word.objects.get(id=cd['word_id'])
+            w.translation = cd['translation']
+            w.is_known = cd['is_known']
+            w.last_review = datetime.date.today()
+            w.save()
         else:
             updated = 'We updated something', form.errors
         context['updated'] = updated
 
     startdate = datetime.date(1999, 1, 1)
     enddate = datetime.date.today() - datetime.timedelta(days=7)
-    word_to_edit = Word.objects.filter(last_review__range=[startdate, enddate])[0]
-    context['word_to_edit'] =  word_to_edit
+    need_review = Word.objects.filter(last_review__range=[startdate, enddate])
+    if len(need_review)>0:
+        context['word_to_edit'] =  need_review[0]
+
+    known_words = Word.objects.filter(is_known=True)
+    context['known_words'] = known_words
+    unknown_words = Word.objects.filter(is_known=False)
+    context['unknown_words'] = unknown_words
     return render(request, 'vocabulary.html', context)
 
 
