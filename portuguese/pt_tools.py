@@ -7,6 +7,7 @@ from nltk.text import Text
 from nltk.probability import FreqDist
 from nltk.util import bigrams
 from nltk.misc import babelize_shell
+from portuguese.models import Word
 
 print("Type: 'texts()' to list the materials.")
 
@@ -25,10 +26,22 @@ def common_vocab(text, n=50):
     words = [word.lower() for word in text if word.isalpha()]
     fdist = FreqDist(words)
     common = fdist.most_common(n)
-    return common
+    word_list = [w for (w,n) in common]
+    return word_list
 
 def vocab(text):
     distinct_words = set([word.lower() for word in text if word.isalpha()])
     return distinct_words
 
+
+def add_words_to_db(word_list):
+    added = []
+    for w in word_list:
+        obj, created = Word.objects.get_or_create(word=w, defaults={'is_known': False})
+        if created:
+            added.append(w)
+
+    print("Added ", len(added), " words, out of ", len(word_list), " total words.")
+
+    return added
 
