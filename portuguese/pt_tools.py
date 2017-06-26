@@ -8,6 +8,7 @@ from nltk.probability import FreqDist
 from nltk.util import bigrams
 from nltk.misc import babelize_shell
 from portuguese.models import Word
+import datetime
 
 print("Type: 'texts()' to list the materials.")
 
@@ -37,7 +38,7 @@ def vocab(text):
 def add_words_to_db(word_list):
     added = []
     for w in word_list:
-        obj, created = Word.objects.get_or_create(word=w, defaults={'is_known': False})
+        obj, created = Word.objects.get_or_create(word=w, defaults={'is_known': False, 'last_review': datetime.date(2000, 1, 1)})
         if created:
             added.append(w)
 
