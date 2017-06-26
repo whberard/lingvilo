@@ -209,7 +209,9 @@ def subjunctive_constructs(request):
     return render(request, 'subjunctive.html', {})
 
 
-
+def my_vocabulary(request):
+    context = {}
+    return render(request, 'vocabulary.html', context)
 
 
 
