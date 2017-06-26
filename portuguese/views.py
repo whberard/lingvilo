@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from portuguese.models import Verb
+from portuguese.models import Verb, Word
+from portuguese.pt_tools import *
+import datetime
+from portuguese.forms import WordForm
 
 # Create your views here.
 def conjugate_pt(request):
@@ -210,7 +213,23 @@ def subjunctive_constructs(request):
 
 
 def my_vocabulary(request):
+    #ptext1 = Text(machado.words('romance/marm05.txt'), name="Memórias Póstumas de Brás Cubas (1881)")
+    #word_list = common_vocab(ptext1, 20)
     context = {}
+    if request.method == 'POST':
+        
+        form = WordForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            updated = "We updated id=", cd['word_id']
+        else:
+            updated = 'We updated something', form.errors
+        context['updated'] = updated
+
+    startdate = datetime.date(1999, 1, 1)
+    enddate = datetime.date.today() - datetime.timedelta(days=7)
+    word_to_edit = Word.objects.filter(last_review__range=[startdate, enddate])[0]
+    context['word_to_edit'] =  word_to_edit
     return render(request, 'vocabulary.html', context)
 
 
