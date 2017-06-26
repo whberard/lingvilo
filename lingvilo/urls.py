@@ -14,10 +14,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from portuguese.views import conjugate_pt, subjunctive_constructs
+from portuguese.views import conjugate_pt, subjunctive_constructs, my_vocabulary
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^portuguese/conjugate/$', conjugate_pt),
     url(r'^portuguese/subjunctive/$', subjunctive_constructs),
+    url(r'^portuguese/vocabulary/$', my_vocabulary),
 ]
