@@ -14,12 +14,26 @@
         <form class="form-inline" action="" method="post">
             <input type="hidden" name="word_id" value="{{ word_to_edit.id }}">
             <label>{{ word_to_edit }}</label>
-            <input type="text" name="translation" value="{{ word_to_edit.translation }}">
+            <input autofocus type="text" name="translation" value="{{ word_to_edit.translation }}">
             Know? <input class="form-check-input" name="is_known" type="checkbox">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    </div>
+    {% if known_words %}
+    <div class="row">
+        Words you know: 
+        <p>
+        {% for w in known_words %}{{ w.word }}, {% endfor %}
+        </p>
+    </div>
+    {% endif %}
+    <div class="row">
+        Words you don't know:
+            {% for w in unknown_words %}
+            {{ w.word }}, 
+            {% endfor %}
     </div>
 </div>
 </body>
