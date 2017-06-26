@@ -11,6 +11,7 @@
     {% endif %}
 	<div class="row">
     <div class="col-md-6" >
+        {% if word_to_edit %}
         <form class="form-inline" action="" method="post">
             <input type="hidden" name="word_id" value="{{ word_to_edit.id }}">
             <label>{{ word_to_edit }}</label>
@@ -19,21 +20,26 @@
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        {% else %}
+        <p><b>All words have been reviewed recently!</b></p>
+        {% endif %}
     </div>
     </div>
     {% if known_words %}
     <div class="row">
-        Words you know: 
+        <h3>Words you know: </h3>
         <p>
         {% for w in known_words %}{{ w.word }}, {% endfor %}
         </p>
     </div>
     {% endif %}
     <div class="row">
-        Words you don't know:
+        <h3>Words you don't know:</h3>
+        <p>
             {% for w in unknown_words %}
             {{ w.word }}, 
             {% endfor %}
+        </p>
     </div>
 </div>
 </body>
