@@ -1,9 +1,8 @@
 # First 22 lines or so of this file were taken from: 
 # http://www.nltk.org/_modules/nltk/examples/pt.html
 
-
 from nltk.corpus import machado, mac_morpho, floresta, genesis
-from nltk.text import Text
+from nltk.text import Text, ConcordanceIndex
 from nltk.probability import FreqDist
 from nltk.util import bigrams
 from nltk.misc import babelize_shell
@@ -16,6 +15,11 @@ ptext1 = Text(machado.words('romance/marm05.txt'), name="Memórias Póstumas de 
 ptext2 = Text(machado.words('romance/marm08.txt'), name="Dom Casmurro (1899)")
 ptext3 = Text(genesis.words('portuguese.txt'), name="Gênesis")
 ptext4 = Text(mac_morpho.words('mu94se01.txt'), name="Folha de Sao Paulo (1994)")
+
+machado_fileids = machado.fileids()
+machado_words = machado.words('romance/marm05.txt')
+machado_text = Text(machado_words)
+machado_ci = ConcordanceIndex(machado_text)
 
 def texts():
     print("ptext1:", ptext1.name)
@@ -45,4 +49,32 @@ def add_words_to_db(word_list):
     print("Added ", len(added), " words, out of ", len(word_list), " total words.")
 
     return added
+
+def machado_concordance(word, width=75, lines=10):
+    # This is edited from the concordance code to return 
+    # a list of results instead of directly printing
+
+    half_width = (width - len(word) - 2) // 2
+    context = width // 4 # approx number of words of context
+
+    offsets = machado_ci.offsets(word)
+    concordance = []
+    if offsets:
+        lines = min(lines, len(offsets))
+        #print("Displaying %s of %s matches:" % (lines, len(offsets)))
+        for i in offsets:
+            if lines <= 0:
+                break
+            
+            left = (' ' * half_width + ' '.join(machado_ci.tokens()[i-context:i]))
+            right = ' '.join(machado_ci.tokens()[i+1:i+context])
+            left = left[-half_width:]
+            right = right[:half_width]
+            concordance.append(left + ' ' + machado_ci.tokens()[i] + ' ' + right)
+            lines -= 1
+            
+    return concordance
+
+
+
 
