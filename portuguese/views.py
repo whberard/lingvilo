@@ -233,11 +233,16 @@ def my_vocabulary(request):
     if len(need_review)>0:
         context['word_to_edit'] =  need_review[0]
 
+        #Make a concordance
+        mc = machado_concordance(need_review[0])
+        context['concordance'] = mc
+
     known_words = Word.objects.filter(is_known=True).order_by('word')
     context['known_words'] = known_words
     unknown_words = Word.objects.filter(is_known=False).order_by('word')
     context['unknown_words'] = unknown_words
     return render(request, 'vocabulary.html', context)
+
 
 
 
