@@ -22,6 +22,17 @@
         {% endif %}
     </div>
     </div>
+    <div class="row">
+        {% if concordance %}
+        <table>
+            {% for c in concordance %}
+            <tr>
+                <td align='right'>{{ c.0 }}</td><td>&nbsp;{{ c.1 }}&nbsp;</td><td align='left'>{{ c.2 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
     {% if known_words %}
     <div class="row">
         <h3>Words you know: </h3>
