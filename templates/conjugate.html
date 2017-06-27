@@ -1,11 +1,8 @@
-{% load staticfiles %}
-<html>
-<head>
-	<title>Conjugate</title>
-	<link rel="stylesheet" type="text/css" href="{% static "bootstrap-3.3.7-dist/css/bootstrap.min.css" %}">
-</head>
-<body>
-<div class="container" style="padding-top: 20px;">
+{% extends "base.html" %}
+
+{% block title %}Conjugate{% endblock %}
+
+{% block content %}
 	<div class="row">
     <div class="col-md-6" >
 	<h1>Conjugate a verb!</h1>
@@ -78,6 +75,5 @@
 
 	{% endif %}
 	{% endif %}
-</div>
-</body>
-</html>
+
+{% endblock %}
