@@ -17,7 +17,8 @@ ptext3 = Text(genesis.words('portuguese.txt'), name="Gênesis")
 ptext4 = Text(mac_morpho.words('mu94se01.txt'), name="Folha de Sao Paulo (1994)")
 
 machado_fileids = machado.fileids()
-machado_words = machado.words('romance/marm05.txt')
+machado_words = machado.words(['romance/marm05.txt', 'cronica/macr04.txt', 'critica/mact15.txt'])
+#machado_words = machado.words(machado_fileids) + mac_morpho.words('mu94se01.txt') + genesis.words('portuguese.txt')
 machado_text = Text(machado_words)
 machado_ci = ConcordanceIndex(machado_text)
 
@@ -54,6 +55,7 @@ def machado_concordance(word, width=75, lines=10):
     # This is edited from the concordance code to return 
     # a list of results instead of directly printing
 
+    word = str(word)
     half_width = (width - len(word) - 2) // 2
     context = width // 4 # approx number of words of context
 
@@ -70,7 +72,7 @@ def machado_concordance(word, width=75, lines=10):
             right = ' '.join(machado_ci.tokens()[i+1:i+context])
             left = left[-half_width:]
             right = right[:half_width]
-            concordance.append(left + ' ' + machado_ci.tokens()[i] + ' ' + right)
+            concordance.append([left , machado_ci.tokens()[i] , right])
             lines -= 1
             
     return concordance
