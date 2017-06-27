@@ -244,5 +244,8 @@ def my_vocabulary(request):
     return render(request, 'vocabulary.html', context)
 
 
+def can_i_read_this(request):
+    context = {}
+    return render(request, 'canireadthis.html', context)
 
 
